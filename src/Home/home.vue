@@ -1,13 +1,6 @@
 <template>
     <div class="mui-content ">
-        <!-- 轮播图 -->
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="(item,index) in imgList" :key="index">
-                <a :href="item.url">
-                  <img :src="item.img" alt="">
-                </a>
-            </mt-swipe-item>
-        </mt-swipe>
+        <swipe :imgUrl="img_url"></swipe>
          <!-- 九宫格 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9 home">
             <li v-for="item in gridList" :key="item.id" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -21,22 +14,18 @@
 </template>
 
 <script>
-    import Vue from 'vue';
-    import { Swipe, SwipeItem } from 'mint-ui';
-    import 'mint-ui/lib/style.css'
-
-    Vue.component(Swipe.name, Swipe);
-    Vue.component(SwipeItem.name, SwipeItem);   
+    import swipe from '../Common/swipe.vue'
     export default {
         data:function(){
             return {
                 gridList:[],
-                imgList:[]
+                img_url:'/getlunbo'
+               
             }
         },
         created:function(){
             this.getGrid();
-            this.getImg()
+           
         },
         methods:{
            getGrid:function(){
@@ -49,33 +38,17 @@
                .catch((err)=>{
                    console.error(err)
                })
-           },
-           getImg(){
-                this.$http.get('/getlunbo')
-                .then((res)=>{
-                    if(res.status===200 && res.data.status===0){
-                        this.imgList= res.data.message;
-                    }
-                    
-                })
-                .catch((error)=>{
-                    console.log(error)
-                })
            }
+        },
+        components:{
+            swipe
         }
         
 };
 </script>
 
 <style scoped>
-     /* 轮播图 */
-    .mint-swipe{
-         height: 250px;
-    }
-    .mint-swipe img {
-        width: 100%;
-        height: 100%;
-    }
+    
     /* 九宫格 */
     .home {
         background: #fff;
