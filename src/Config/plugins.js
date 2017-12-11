@@ -12,4 +12,5 @@ import 'mint-ui/lib/style.css'
 import Mint from 'mint-ui'
 Vue.use(Mint)
   
-
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)

@@ -8,7 +8,7 @@
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" v-for="(item,index) in imgList" :key="index">
                    <a href="#">
-                     <img :src="item.src" alt="">
+                     <img class="preview-img"  :src="item.src" @click="$preview.open(index,imgList)" alt="">
                    </a>
             </li>
            
@@ -58,6 +58,10 @@
                 .then((res)=>{
                     if(res.status===200 && res.data.status===0){
                         this.imgList = res.data.message;
+                        this.imgList.forEach((item)=>{
+                             item.w = 600;
+                             item.h = 400;
+                        })
                     }else{
                         console.log('err')
                     }

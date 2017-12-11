@@ -14,6 +14,10 @@ module.exports = {
     },
     module:{
         rules:[
+            {
+                test: /vue-preview.src.*?js$/,
+                loader: 'babel'
+            },
             {    test:/\.css$/,use:['style-loader','css-loader']} ,
             {
                 test:/\.vue$/, use:['vue-loader']

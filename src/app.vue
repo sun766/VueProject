@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a v-if="isShow" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" @click="goBack()"></a>
 			<h1 class="mui-title">底部选项卡-div模式</h1>
 		</header>
 		<nav class="mui-bar mui-bar-tab">
@@ -30,7 +30,32 @@
 <script>
 //这是一个单页面应用
 	 export default {
-        
+           data:function(){
+			   return {
+				   isShow: false
+			   }
+		   },
+		   methods:{
+			    goBack:function(){
+                        this.$router.go(-1);
+				},
+                isGoBack(path){
+                     let pathArr = ['/home','/member','/shopCar','/search'];
+					if(pathArr.indexOf(path)==-1){
+                        this.isShow = true
+					}else{
+						this.isShow= false;
+					}
+				}
+		   },
+		   created(){
+                 this.isGoBack(this.$route.path)
+		   },
+		   watch:{
+			    $route:function(newValue){
+					    this.isGoBack(newValue.path)
+				}
+		   }
     }
     
 </script>
