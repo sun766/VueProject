@@ -17,6 +17,9 @@ import contact from '../Home/Contact/contact.vue'
 
 import infoNews from '../Home/News/info.vue'
 import infoShare from '../Home/Share/info.vue'
+import goodsDetail from '../Home/Buy/goodsDetail.vue'
+import comment from '../Home/Buy/comment.vue'
+import intro from '../Home/Buy/intro.vue'
 
 let router = new vueRouter({
     linkActiveClass:'mui-active',
@@ -36,7 +39,10 @@ let router = new vueRouter({
         {path:'/contact',component:contact},
         
         {name:'infoIndex',path:'/news/:id',component:infoNews,props:true},
-        {name:'infoShare',path:'/info/:id',component:infoShare,props:true}
+        {name:'infoShare',path:'/info/:id',component:infoShare,props:true},
+        {name:'goodsDetail',path:'/detail/:id',component: goodsDetail,props: true},
+        {name:'comment' , path:'/comment/:id',component: comment,props:true},
+        {name:'intro',path:'/intro/:id',component: intro,props:true}
     ]
 })
 

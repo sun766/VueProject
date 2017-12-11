@@ -33,8 +33,7 @@
                   .then((res)=>{
                       if(res.status===200&& res.data.status ===0){
                           this.newsList=res.data.message;
-                      }
-                      
+                      }     
                   })
                   .catch((err)=>{
                       console.error(err)

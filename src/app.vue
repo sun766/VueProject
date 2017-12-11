@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import vmObj from '../src/Common/connect'
 //这是一个单页面应用
 	 export default {
            data:function(){
@@ -35,6 +36,7 @@
 				   isShow: false
 			   }
 		   },
+		   
 		   methods:{
 			    goBack:function(){
                         this.$router.go(-1);
@@ -48,14 +50,20 @@
 					}
 				}
 		   },
-		   created(){
-                 this.isGoBack(this.$route.path)
+		    created(){
+				 this.isGoBack(this.$route.path);
+				
+				vmObj.$on('sendNum',function(num){
+				    console.log(num)
+				
+                })
 		   },
-		   watch:{
+           watch:{
 			    $route:function(newValue){
 					    this.isGoBack(newValue.path)
 				}
 		   }
+		   
     }
     
 </script>

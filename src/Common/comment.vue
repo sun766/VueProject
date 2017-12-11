@@ -56,13 +56,15 @@ export default {
                   let data = {content:this.text};
                   this.$http.post('/postcomment/'+this.id,data)
                      .then((res)=>{
-                         this.commentList.unshift({
+                         if(res.data.status===0&& res.status===200){
+                              this.commentList.unshift({
                              user_name:'匿名用户',
                              add_time: new Date(),
                              content: this.text
                          })
                          this.text="";
                          this.$toast('评论成功')
+                         }
                      })
                      .catch((err)=>{
                          console.error(err)
